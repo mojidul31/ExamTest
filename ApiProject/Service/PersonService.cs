@@ -131,6 +131,10 @@ namespace ApiProject.Service
         {
             List<PersonHistory> list = new List<PersonHistory>();
             list = _context.PersonHistory.ToList();
+            if (list != null && list.Any())
+            {
+                list = list.OrderByDescending(x => x.Id).ToList();
+            }
             return list;
         }
 

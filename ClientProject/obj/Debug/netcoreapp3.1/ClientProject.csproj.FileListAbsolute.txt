@@ -93,3 +93,4 @@ E:\Exam\DotNet\ProjectTestFromReqruiter\ExamTest\TestSolution\ClientProject\obj\
 E:\Exam\DotNet\ProjectTestFromReqruiter\ExamTest\TestSolution\ClientProject\obj\Debug\netcoreapp3.1\ClientProject.genruntimeconfig.cache
 E:\Exam\DotNet\ProjectTestFromReqruiter\ExamTest\TestSolution\ClientProject\obj\Debug\netcoreapp3.1\Razor\Views\Person\Edit.cshtml.g.cs
 E:\Exam\DotNet\ProjectTestFromReqruiter\ExamTest\TestSolution\ClientProject\obj\Debug\netcoreapp3.1\Razor\Views\Person\Delete.cshtml.g.cs
+E:\Exam\DotNet\ProjectTestFromReqruiter\ExamTest\TestSolution\ClientProject\obj\Debug\netcoreapp3.1\Razor\Views\Person\ShowPersonHistory.cshtml.g.cs

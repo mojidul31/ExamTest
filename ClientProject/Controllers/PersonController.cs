@@ -1,4 +1,5 @@
 ﻿using ClientProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,7 @@ namespace ClientProject.Controllers
             apiBaseUrl = _configuration.GetValue<string>("WebAPIBaseUrl");
         }
         // GET: PersonController
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Index()
         {            
@@ -52,12 +54,15 @@ namespace ClientProject.Controllers
         }
 
         // GET: PersonController/Create
+        [Authorize]
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: PersonController/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync(IFormCollection collection)
@@ -90,6 +95,8 @@ namespace ClientProject.Controllers
         }
 
         // GET: PersonController/Edit/5
+        [Authorize]
+        [HttpGet]
         public async Task<ActionResult> EditAsync(int id)
         {
             PersonViewModel person = new PersonViewModel();
@@ -107,6 +114,7 @@ namespace ClientProject.Controllers
         }
 
         // POST: PersonController/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(int id, IFormCollection collection)
@@ -141,6 +149,8 @@ namespace ClientProject.Controllers
         }
 
         // GET: PersonController/Delete/5
+        [Authorize]
+        [HttpGet]
         public async Task<ActionResult> DeleteAsync(int id)
         {
             PersonViewModel person = new PersonViewModel();
@@ -158,6 +168,7 @@ namespace ClientProject.Controllers
         }
 
         // POST: PersonController/Delete/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteAsync(int id, IFormCollection collection)
@@ -183,5 +194,24 @@ namespace ClientProject.Controllers
                 return View();
             }
         }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> ShowPersonHistory()
+        {
+            List<PersonHistoryViewModel> personHistoryList = new List<PersonHistoryViewModel>();
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = apiBaseUrl + "/people/history";
+
+                using (var response = await client.GetAsync(endpoint))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    personHistoryList = JsonConvert.DeserializeObject<List<PersonHistoryViewModel>>(apiResponse);
+                }
+            }
+            return View(personHistoryList);
+        }
+
     }
 }

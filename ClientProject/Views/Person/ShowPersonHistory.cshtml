@@ -1,0 +1,43 @@
+﻿@model List<PersonHistoryViewModel>
+@using ClientProject.ViewModels;
+@{
+    ViewData["Title"] = "Person History Information";
+}
+<h5>Person Audit Information</h5>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <table id="tblPerson" class="hover order-column display compact stripe" border="1" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone No</th>
+                    <th>Email</th>
+                    <th>Operation Type</th>
+                    <th>Create Date</th>
+                    <th>Update Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (PersonHistoryViewModel person in Model.OrderBy(h => h.Name))
+                    {
+                        <text>
+                            <tr>
+                                <td>@person.Name</td>
+                                <td>@person.PhoneNo</td>
+                                <td>@person.Email</td>
+                                <td>@person.OperationType</td>
+                                <td>@person.CreateDateTime?.ToString("dd/MM/yyyy")</td>
+                                <td>@person.UpdateDateTime?.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        </text>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
