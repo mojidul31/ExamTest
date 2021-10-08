@@ -1,0 +1,55 @@
+﻿@model List<PersonViewModel>
+@using ClientProject.ViewModels;
+@{
+    ViewData["Title"] = "Person Information";
+}
+<h5>Person Information</h5>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="/Person/Create">Add New +</a>
+    </div>
+</div>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <table id="tblPerson" class="hover order-column display compact stripe" border="1" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone No</th>
+                    <th>Email</th>
+                    <th>Create Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (PersonViewModel person in Model.OrderBy(h => h.Name))
+                    {
+                        <text>
+                            <tr>
+                                <td>@person.Name</td>
+                                <td>@person.PhoneNo</td>
+                                <td>@person.Email</td>
+                                <td>@person.CreateDateTime?.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Person", new { id = person.Id })" class="btn btn-primary">
+                                        <i class="fa fa-edit" title="Edit"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Delete", "Person", new { id = person.Id })" class="btn btn-danger">
+                                        <i class="fa fa-trash" title="Delete"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </text>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

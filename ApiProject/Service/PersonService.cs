@@ -105,6 +105,10 @@ namespace ApiProject.Service
                     });
                 }
             }
+            if(list != null && list.Any())
+            {
+                list = list.OrderByDescending(x => x.Id).ToList();
+            }
             return list;
         }
 

@@ -1,0 +1,93 @@
+﻿@model PersonViewModel;
+@using ClientProject.ViewModels;
+
+@{
+    ViewData["Title"] = "Create Person";
+}
+
+@Html.AntiForgeryToken()
+<form asp-controller="Person" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>    
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <section>
+                <fieldset>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-sm-5">
+                                        <label asp-for="Name" , class="label-text-align"></label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-sm-5">
+                                        <label asp-for="PhoneNo" , class="label-text-align"></label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input asp-for="PhoneNo" class="form-control" />
+                                        <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-sm-5">
+                                        <label asp-for="Email" , class="label-text-align"></label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-4">
+                                <button name="button" value="save" id="personSave" class="btn btn-primary" asp-action="Create">Save</button>
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </section>
+        </div>
+    </div>
+    
+</form>
+<br />
+<div>
+    <a asp-action="Index">Go To Person List</a>
+</div>
